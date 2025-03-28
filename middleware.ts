@@ -28,10 +28,6 @@ export default withAuth(
 
 export const config = {
     matcher: [
-        "/", 
-        "/api/videos", 
-        "/api/auth/:path*", 
-        "/login", 
-        "/register"
+        "/((?!_next/static|_next/image|favicon.ico|public/).*)",
     ]
 }
