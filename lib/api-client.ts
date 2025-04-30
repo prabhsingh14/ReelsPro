@@ -2,17 +2,17 @@ import { IVideo } from "@/models/Video";
 
 export type VideoFormData = Omit<IVideo, "_id">;
 
-type FetchOptions = {
+type FetchOptions<T = unknown> = {
     method?: "GET" | "POST" | "PUT" | "DELETE";
-    body?: any;
+    body?: T;
     headers?: Record<string, string>;
 };
 
 class ApiClient {
-    private async fetch<T>(
+    private async fetch<TResponse, TBody = unknown>(
         endpoint: string,
-        options: FetchOptions = {}
-    ): Promise<T> {
+        options: FetchOptions<TBody> = {}
+    ): Promise<TResponse> {
         const { method = "GET", body, headers = {} } = options;
 
         const defaultHeaders = {
@@ -42,7 +42,7 @@ class ApiClient {
     }
 
     async createVideo(videoData: VideoFormData) {
-        return this.fetch<IVideo>("/videos", {
+        return this.fetch<IVideo, VideoFormData>("/videos", {
             method: "POST",
             body: videoData,
         });

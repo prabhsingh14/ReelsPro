@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/db";
 import User from "@/models/User";
-import { error } from "console";
 
 export async function POST(request: NextRequest){
     try {
@@ -30,6 +29,7 @@ export async function POST(request: NextRequest){
             {status: 201}
         )
     } catch (error) {
+        console.error("Error creating user:", error)
         return NextResponse.json(
             {error: "Something went wrong"},
             {status: 500}

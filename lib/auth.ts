@@ -35,6 +35,7 @@ export const authOptions: NextAuthOptions = {
                         email: user.email
                     }
                 } catch (error) {
+                    console.error("Error authorizing user:", error)
                     throw new Error("Something went wrong")
                 }
             }

@@ -27,6 +27,7 @@ export async function connectToDatabase() {
         cached.conn = await cached.promise;
     } catch (error) {
         cached.promise = null;
+        console.error("Error connecting to database:", error);
         throw new Error("Error connecting to database");
     }
 
